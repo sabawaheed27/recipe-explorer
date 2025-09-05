@@ -16,3 +16,13 @@ export default function CategoryPageClient({
     <CategoryDetailClient initialMeals={meals} category={category} />
   );
 }
+
+
+// Server component (CategoryDetailPage)
+// Fetches meals from the API.
+// Passes them as props to CategoryPageClient.
+// Client component (CategoryPageClient)
+// Receives meals + category.
+// Displays the category name at the top.
+// Checks if meals exist. If not, shows a fallback message.
+// Maps through the meals array and renders each meal (thumbnail + name).

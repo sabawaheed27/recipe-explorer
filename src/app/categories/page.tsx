@@ -103,3 +103,7 @@ export default function CategoriesPage() {
     </div>
   );
 }
+
+//This page fetches all food categories, displays them in
+// a slick animated grid of cards, and lets logged-in users save favourite categories.
+// The experience is personalized through UserContext, while Framer Motion makes it feel alive

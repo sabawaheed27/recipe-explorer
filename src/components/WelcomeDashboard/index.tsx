@@ -68,5 +68,8 @@ export default function WelcomeDashboard({ children }: Props) {
     </div>
   ) : (
     <div className="min-h-screen p-4 sm:p-6 animate-fadeIn">{children}</div>
-  );
+  ); //Once the welcome is gone, render the actual app content (children) with a fade-in effect.
 }
+
+//This component wraps the dashboard in a personalized loading screen. It greets the
+//  logged-in user with an image + progress bar, smoothly fades out, then swaps in the real dashboard content.

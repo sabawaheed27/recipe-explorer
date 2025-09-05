@@ -28,12 +28,14 @@ export default function CategoryDetailClient({
       setSavedMeals(userContext.user.favouriteRecipes.map((r) => r.idMeal));
     }
   }, [userContext, router]);
+//When the component mounts: If no user, redirect to /.
+//If a user exists, populate savedMeals from their favourites.
 
-  if (!userContext || !userContext.user) {
+if (!userContext || !userContext.user) {
     return null; // Or a loading spinner
   }
-  const { user, setUser } = userContext;
 
+  const { user, setUser } = userContext;
   const toggleFavorite = useCallback(async (meal: MealSummary) => {
     if (!user) return;
     const isSaved = user.favouriteRecipes.some((r) => r.idMeal === meal.idMeal);
@@ -57,7 +59,8 @@ export default function CategoryDetailClient({
     }
   }, [user, setUser]);
 
-  if (initialMeals.length === 0) {
+  //Displays a fallback message + back button if no meals are found.
+if (initialMeals.length === 0) {
     return (
       <div className="text-center p-10 text-gray-200">
         <BackButton />
@@ -67,8 +70,7 @@ export default function CategoryDetailClient({
         <p className="text-gray-400">Try selecting a different category.</p>
         <Link
           href="/"
-          className="mt-4 inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md transition-colors"
-        >
+          className="mt-4 inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md transition-colors">
           Back to Home
         </Link>
       </div>
@@ -81,6 +83,8 @@ export default function CategoryDetailClient({
         <BackButton />
       </div>
 
+      {/* Loops through all meals in the category. */}
+      {/* Each meal card has: Thumbnail + name. Link to full detail page.Button to save/remove from favourites. */}
       <h1 className="text-3xl md:text-4xl font-bold mb-3">
         Meals in <span className="text-teal-400">{decodeURIComponent(category)}</span>
       </h1>
@@ -94,8 +98,7 @@ export default function CategoryDetailClient({
           return (
             <div
               key={m.idMeal}
-              className="relative group bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-teal-500/40"
-            >
+              className="relative group bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-teal-500/40">
               <Link href={`/item/${m.idMeal}`}>
                 <Image src={m.strMealThumb} alt={m.strMeal} width={400} height={300} className="w-full h-52 object-cover" />
                 <div className="p-4">
