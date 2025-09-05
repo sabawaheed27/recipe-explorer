@@ -1,5 +1,5 @@
 import { Meal } from "@/utils/types";
-import ItemDetailClient from ".";
+import ItemDetailClient from "@/components/ItemDetailClient";
 
 interface ItemPageProps {
   params: {

@@ -1,6 +1,6 @@
 
 import { MealSummary } from "@/utils/types";
-import CategoryPageClient from "./index";
+import CategoryPageClient from "@/components/CategoryPageClient";
 
 interface CategoryDetailPageProps {
   params: {
@@ -26,7 +26,7 @@ async function getMealsByCategory(category: string): Promise<MealSummary[]> {
 }
 
 export default async function CategoryDetailPage({ params }: CategoryDetailPageProps) {
-  const { category } = params;
+  const category = params.category; 
   const meals = await getMealsByCategory(category);
 
   return <CategoryPageClient meals={meals} category={category} />;
